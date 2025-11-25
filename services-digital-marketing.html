@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Marketing | Xlora Ads</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root { --bg-dark: #030305; --primary: #4b5ef1; /* Blue Accent for Digital */ --text-main: #ffffff; --text-muted: #888899; --font-display: 'Syne', sans-serif; --font-body: 'Inter', sans-serif; --border: rgba(255, 255, 255, 0.08); --easing: cubic-bezier(0.23, 1, 0.32, 1); }
+        * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; }
+        body { background-color: var(--bg-dark); color: var(--text-main); font-family: var(--font-body); line-height: 1.6; overflow-x: hidden; }
+        
+        .cursor-dot, .cursor-outline { position: fixed; top: 0; left: 0; transform: translate(-50%, -50%); border-radius: 50%; z-index: 9999; pointer-events: none; }
+        .cursor-dot { width: 8px; height: 8px; background-color: var(--primary); }
+        .cursor-outline { width: 40px; height: 40px; border: 1px solid rgba(255, 255, 255, 0.5); transition: width 0.2s, height 0.2s; }
+        body:hover .cursor-outline { opacity: 1; }
+        .spotlight { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; background: radial-gradient(600px circle at var(--x, 50%) var(--y, 50%), rgba(75, 94, 241, 0.15), transparent 40%); z-index: 1; }
+        .noise { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9998; opacity: 0.05; background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyBAMAAADsEZWCAAAAGFBMVEUAAAA5OTkAAABMTExERERmZmYzMzMzMzM2dOTMAAAAB3RSTlMABVDV7uPj6d1tFgAAABRJREFUeF5jYBgFoyEwGgKjITCaAAAEOAABK4QYgAAAAABJRU5ErkJggg=='); }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 2; }
+        .section-padding { padding: 120px 0; }
+        .display-text { font-family: var(--font-display); font-size: clamp(3rem, 6vw, 5rem); font-weight: 800; line-height: 1; letter-spacing: -2px; }
+        
+        header { position: fixed; top: 0; width: 100%; padding: 24px 0; z-index: 100; mix-blend-mode: difference; }
+        nav { display: flex; justify-content: space-between; align-items: center; }
+        .logo img { max-height: 50px; width: auto; }
+        .nav-links a { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; color: #fff; opacity: 0.7; text-decoration: none; margin-left: 30px; }
+        .nav-links a:hover { opacity: 1; color: var(--primary); }
+        footer { border-top: 1px solid var(--border); padding: 80px 0 30px; margin-top: 100px; }
+
+        .service-hero { padding: 180px 0 100px; text-align: center; }
+        .hero-desc { font-size: 1.2rem; color: var(--text-muted); margin: 30px auto 0; max-width: 600px; }
+        
+        .stats-row { display: flex; justify-content: center; gap: 60px; margin-top: 60px; flex-wrap: wrap; }
+        .stat-item h3 { font-size: 3rem; color: var(--primary); font-family: var(--font-display); font-weight: 700; }
+        .stat-item p { color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; font-size: 0.8rem; }
+
+        .services-list { margin-top: 80px; }
+        .service-row { display: flex; align-items: center; padding: 40px 0; border-bottom: 1px solid var(--border); transition: 0.3s; }
+        .service-row:hover { background: rgba(255,255,255,0.02); padding-left: 20px; }
+        .service-num { font-family: var(--font-display); font-size: 1.5rem; color: var(--primary); margin-right: 30px; }
+        .service-info h3 { font-size: 2rem; font-family: var(--font-display); }
+        .service-info p { color: var(--text-muted); max-width: 600px; margin-top: 10px; }
+        
+        .reveal-up { opacity: 0; transform: translateY(30px); transition: all 0.8s var(--easing); }
+        .reveal-up.active { opacity: 1; transform: translateY(0); }
+        @media (max-width: 768px) { .nav-links { display: none; } .service-row { flex-direction: column; align-items: flex-start; } .service-num { margin-bottom: 10px; } }
+    </style>
+</head>
+<body>
+    <div class="cursor-dot" data-cursor-dot></div><div class="cursor-outline" data-cursor-outline></div><div class="spotlight"></div><div class="noise"></div>
+
+    <header><div class="container"><nav>
+        <a href="index.html" class="logo"><img src="assets/images/XLORA LOGO NEW.png" alt="Logo"></a>
+        <div class="nav-links"><a href="index.html#services">Back to Home</a><a href="works.html">View Work</a><a href="index.html#contact">Contact</a></div>
+    </nav></div></header>
+
+    <section class="service-hero container">
+        <div class="reveal-up">
+            <h4 style="color: var(--primary); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px;">Service</h4>
+            <h1 class="display-text">Digital <br>Growth.</h1>
+            <p class="hero-desc">Data-driven strategies that amplify your reach. We don't just post content; we build communities and drive conversions.</p>
+        </div>
+        
+        <div class="stats-row reveal-up">
+            <div class="stat-item"><h3>200%</h3><p>Avg. Traffic Growth</p></div>
+            <div class="stat-item"><h3>10k+</h3><p>Leads Generated</p></div>
+            <div class="stat-item"><h3>50+</h3><p>Active Clients</p></div>
+        </div>
+    </section>
+
+    <section class="section-padding container">
+        <h2 class="display-text" style="font-size: 2.5rem; margin-bottom: 40px;">Solutions</h2>
+        <div class="services-list">
+            <div class="service-row reveal-up">
+                <span class="service-num">01</span>
+                <div class="service-info">
+                    <h3>Social Media Management</h3>
+                    <p>Curated content calendars, community engagement, and platform growth for Instagram, Facebook, and LinkedIn.</p>
+                </div>
+            </div>
+            <div class="service-row reveal-up">
+                <span class="service-num">02</span>
+                <div class="service-info">
+                    <h3>SEO & SEM</h3>
+                    <p>Search Engine Optimization to rank higher and Search Engine Marketing (PPC) for immediate visibility.</p>
+                </div>
+            </div>
+            <div class="service-row reveal-up">
+                <span class="service-num">03</span>
+                <div class="service-info">
+                    <h3>Content Marketing</h3>
+                    <p>Blogs, articles, and visual storytelling that establishes your brand as an industry authority.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="container">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <p style="color: var(--text-muted);">Ready to grow online?</p>
+            <a href="index.html#contact" style="padding: 12px 30px; background: var(--primary); color: white; border-radius: 50px; text-decoration: none; font-weight: 700;">Start Marketing</a>
+        </div>
+        <div style="border-top: 1px solid var(--border); margin-top: 40px; padding-top: 20px; font-size: 0.8rem; color: var(--text-muted);">
+            &copy; 2025 Xlora Ads.
+        </div>
+    </footer>
+
+    <script>
+        const cursorDot = document.querySelector('[data-cursor-dot]'), cursorOutline = document.querySelector('[data-cursor-outline]');
+        window.addEventListener("mousemove", e => {
+            const x = e.clientX, y = e.clientY;
+            cursorDot.style.left = `${x}px`; cursorDot.style.top = `${y}px`;
+            cursorOutline.animate({ left: `${x}px`, top: `${y}px` }, { duration: 500, fill: "forwards" });
+            document.body.style.setProperty('--x', `${x}px`); document.body.style.setProperty('--y', `${y}px`);
+        });
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add('active'); });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal-up').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>

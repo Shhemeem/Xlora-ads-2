@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Printing & Gifting | Xlora Ads</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root { --bg-dark: #030305; --primary: #ff1f1f; --text-main: #ffffff; --text-muted: #888899; --font-display: 'Syne', sans-serif; --font-body: 'Inter', sans-serif; --border: rgba(255, 255, 255, 0.08); --easing: cubic-bezier(0.23, 1, 0.32, 1); }
+        * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; }
+        body { background-color: var(--bg-dark); color: var(--text-main); font-family: var(--font-body); line-height: 1.6; overflow-x: hidden; }
+        
+        .cursor-dot, .cursor-outline { position: fixed; top: 0; left: 0; transform: translate(-50%, -50%); border-radius: 50%; z-index: 9999; pointer-events: none; }
+        .cursor-dot { width: 8px; height: 8px; background-color: var(--primary); }
+        .cursor-outline { width: 40px; height: 40px; border: 1px solid rgba(255, 255, 255, 0.5); transition: width 0.2s, height 0.2s; }
+        body:hover .cursor-outline { opacity: 1; }
+        .spotlight { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; background: radial-gradient(600px circle at var(--x, 50%) var(--y, 50%), rgba(255, 255, 255, 0.05), transparent 40%); z-index: 1; }
+        .noise { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9998; opacity: 0.05; background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyBAMAAADsEZWCAAAAGFBMVEUAAAA5OTkAAABMTExERERmZmYzMzMzMzM2dOTMAAAAB3RSTlMABVDV7uPj6d1tFgAAABRJREFUeF5jYBgFoyEwGgKjITCaAAAEOAABK4QYgAAAAABJRU5ErkJggg=='); }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 2; }
+        .section-padding { padding: 120px 0; }
+        .display-text { font-family: var(--font-display); font-size: clamp(3rem, 6vw, 5rem); font-weight: 800; line-height: 1; letter-spacing: -2px; }
+        
+        header { position: fixed; top: 0; width: 100%; padding: 24px 0; z-index: 100; mix-blend-mode: difference; }
+        nav { display: flex; justify-content: space-between; align-items: center; }
+        .logo img { max-height: 50px; width: auto; }
+        .nav-links a { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; color: #fff; opacity: 0.7; text-decoration: none; margin-left: 30px; }
+        .nav-links a:hover { opacity: 1; color: var(--primary); }
+        .hamburger { display: none; font-size: 1.5rem; cursor: pointer; z-index: 101; color: white; }
+        footer { border-top: 1px solid var(--border); padding: 80px 0 30px; margin-top: 100px; }
+
+        .service-hero { padding: 180px 0 100px; text-align: center; }
+        .hero-desc { font-size: 1.2rem; color: var(--text-muted); margin: 30px auto 0; max-width: 600px; }
+        
+        .tabs { display: flex; justify-content: center; gap: 20px; margin-top: 60px; }
+        .tab-btn { padding: 12px 30px; background: transparent; border: 1px solid var(--border); color: var(--text-muted); font-family: var(--font-display); font-weight: 700; border-radius: 50px; cursor: pointer; transition: 0.3s; }
+        .tab-btn.active, .tab-btn:hover { background: var(--primary); color: white; border-color: var(--primary); }
+
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 60px; }
+        .product-card { background: rgba(255,255,255,0.03); border-radius: 20px; padding: 30px; text-align: center; transition: 0.3s; }
+        .product-card:hover { transform: translateY(-10px); background: rgba(255,255,255,0.06); }
+        .product-icon { font-size: 2.5rem; color: var(--primary); margin-bottom: 20px; }
+        .product-card h3 { font-family: var(--font-display); margin-bottom: 10px; }
+        .product-card p { color: var(--text-muted); font-size: 0.9rem; }
+
+        .reveal-up { opacity: 0; transform: translateY(30px); transition: all 0.8s var(--easing); }
+        .reveal-up.active { opacity: 1; transform: translateY(0); }
+        
+        @media (max-width: 768px) {
+            .hamburger { display: block; }
+            .nav-links {
+                position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+                background: var(--bg-dark); flex-direction: column; justify-content: center;
+                align-items: center; gap: 40px; transform: translateY(-100%);
+                transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1); z-index: 99;
+            }
+            .nav-links.active { transform: translateY(0); }
+            .nav-links a { font-size: 1.5rem; opacity: 1; margin: 0; }
+            
+            .tabs { flex-wrap: wrap; }
+            .product-grid { grid-template-columns: 1fr; }
+            .cursor-dot, .cursor-outline { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="cursor-dot" data-cursor-dot></div><div class="cursor-outline" data-cursor-outline></div><div class="spotlight"></div><div class="noise"></div>
+
+    <header><div class="container"><nav>
+        <a href="index.html" class="logo"><img src="assets/images/XLORA LOGO NEW.png" alt="Logo"></a>
+        <div class="nav-links"><a href="index.html#services">Back to Home</a><a href="works.html">View Work</a><a href="index.html#contact">Contact</a></div>
+        <div class="hamburger"><i class="fas fa-bars"></i></div>
+    </nav></div></header>
+
+    <section class="service-hero container">
+        <div class="reveal-up">
+            <h4 style="color: var(--primary); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px;">Physical Production</h4>
+            <h1 class="display-text">Tangible <br>Excellence.</h1>
+            <p class="hero-desc">From high-quality printing to custom corporate gifts and mementos, we bring your brand into the physical world.</p>
+        </div>
+    </section>
+
+    <section class="section-padding container">
+        <div class="tabs reveal-up">
+            <button class="tab-btn active">Printing</button>
+            <button class="tab-btn active">Gifting & Mementos</button>
+        </div>
+
+        <div class="product-grid reveal-up">
+            <div class="product-card">
+                <i class="fas fa-print product-icon"></i>
+                <h3>Large Format</h3>
+                <p>Banners, hoardings, and vinyl branding for events and storefronts.</p>
+            </div>
+            <div class="product-card">
+                <i class="fas fa-file-alt product-icon"></i>
+                <h3>Corporate Stationery</h3>
+                <p>Business cards, letterheads, and brochures printed on premium stock.</p>
+            </div>
+            <div class="product-card">
+                <i class="fas fa-trophy product-icon"></i>
+                <h3>Mementos</h3>
+                <p>Custom designed trophies and plaques for awards and recognition.</p>
+            </div>
+            <div class="product-card">
+                <i class="fas fa-gift product-icon"></i>
+                <h3>Corporate Gifts</h3>
+                <p>Personalized merchandise, diaries, and luxury gift sets for clients.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="container">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <p style="color: var(--text-muted);">Need a quote?</p>
+            <a href="index.html#contact" style="padding: 12px 30px; background: var(--primary); color: white; border-radius: 50px; text-decoration: none; font-weight: 700;">Contact Us</a>
+        </div>
+        <div style="border-top: 1px solid var(--border); margin-top: 40px; padding-top: 20px; font-size: 0.8rem; color: var(--text-muted);">
+            &copy; 2025 Xlora Ads.
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        if(hamburger) {
+            hamburger.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                const icon = hamburger.querySelector('i');
+                icon.classList.toggle('fa-bars');
+                icon.classList.toggle('fa-times');
+            });
+        }
+
+        const cursorDot = document.querySelector('[data-cursor-dot]'), cursorOutline = document.querySelector('[data-cursor-outline]');
+        window.addEventListener("mousemove", e => {
+            const x = e.clientX, y = e.clientY;
+            cursorDot.style.left = `${x}px`; cursorDot.style.top = `${y}px`;
+            cursorOutline.animate({ left: `${x}px`, top: `${y}px` }, { duration: 500, fill: "forwards" });
+            document.body.style.setProperty('--x', `${x}px`); document.body.style.setProperty('--y', `${y}px`);
+        });
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add('active'); });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal-up').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>

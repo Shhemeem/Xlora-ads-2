@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Xlora Ads Portfolio - A showcase of our futuristic branding, video production, and digital campaigns.">
+    <title>Selected Works | Xlora Ads</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* -----------------------------------------------------------
+           INHERITED STYLES (Core Theme)
+        ----------------------------------------------------------- */
+        :root {
+            --bg-dark: #030305;
+            --primary: #ff1f1f;
+            --accent: #4b5ef1;
+            --text-main: #ffffff;
+            --text-muted: #888899;
+            --font-display: 'Syne', sans-serif;
+            --font-body: 'Inter', sans-serif;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.08);
+            --easing: cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; }
+        html { scroll-behavior: smooth; }
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: var(--font-body);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Cursor & Effects */
+        .cursor-dot, .cursor-outline {
+            position: fixed;
+            top: 0; left: 0;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            z-index: 9999;
+            pointer-events: none;
+        }
+        .cursor-dot { width: 8px; height: 8px; background-color: var(--primary); }
+        .cursor-outline { width: 40px; height: 40px; border: 1px solid rgba(255, 255, 255, 0.5); transition: width 0.2s, height 0.2s; }
+        body:hover .cursor-outline { opacity: 1; }
+        
+        .spotlight {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none;
+            background: radial-gradient(600px circle at var(--x, 50%) var(--y, 50%), rgba(29, 29, 35, 0.4), transparent 40%);
+            z-index: 1;
+        }
+        .noise {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9998; opacity: 0.05;
+            background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyBAMAAADsEZWCAAAAGFBMVEUAAAA5OTkAAABMTExERERmZmYzMzMzMzM2dOTMAAAAB3RSTlMABVDV7uPj6d1tFgAAABRJREFUeF5jYBgFoyEwGgKjITCaAAAEOAABK4QYgAAAAABJRU5ErkJggg==');
+        }
+
+        /* Typography & Layout */
+        h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 700; line-height: 1.1; }
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+        img { max-width: 100%; display: block; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 2; }
+        .display-text {
+            font-size: clamp(3rem, 8vw, 6rem); font-weight: 800; letter-spacing: -2px;
+            background: linear-gradient(to right, #fff, #888); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+
+        /* Header */
+        header { position: fixed; top: 0; width: 100%; padding: 24px 0; z-index: 100; transition: 0.4s; mix-blend-mode: difference; }
+        header.scrolled { padding: 16px 0; background: rgba(0,0,0,0.8); backdrop-filter: blur(10px); mix-blend-mode: normal; }
+        nav { display: flex; justify-content: space-between; align-items: center; }
+        .logo img { max-height: 50px; width: auto; }
+        .nav-links { display: flex; gap: 40px; }
+        .nav-links a { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; opacity: 0.7; }
+        .nav-links a:hover { opacity: 1; color: var(--primary); }
+        .hamburger { display: none; font-size: 1.5rem; }
+
+        /* Footer */
+        footer { border-top: 1px solid var(--border); padding: 80px 0 30px; background: #000; margin-top: 100px; }
+        .footer-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 60px; }
+        .social-row { display: flex; gap: 20px; }
+        .social-row a { width: 50px; height: 50px; border: 1px solid var(--border); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: 0.3s; }
+        .social-row a:hover { background: var(--primary); border-color: var(--primary); transform: translateY(-5px); }
+
+        /* -----------------------------------------------------------
+           WORKS PAGE SPECIFIC STYLES
+        ----------------------------------------------------------- */
+        
+        /* Page Header */
+        .works-hero {
+            padding: 200px 0 100px;
+            text-align: center;
+        }
+        
+        .works-hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 20px auto 0;
+        }
+
+        /* Filters */
+        .filter-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 80px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: transparent;
+            border: 1px solid var(--border);
+            padding: 12px 28px;
+            border-radius: 100px;
+            color: var(--text-muted);
+            font-family: var(--font-display);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            transition: all 0.3s var(--easing);
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        /* Gallery Grid */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 40px;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            aspect-ratio: 1/1;
+            cursor: none; /* Maintain custom cursor */
+            opacity: 0; /* For animation */
+            transform: translateY(30px);
+            transition: opacity 0.6s var(--easing), transform 0.6s var(--easing);
+        }
+
+        /* Visible state for animation */
+        .gallery-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Hidden state for filtering */
+        .gallery-item.hidden {
+            display: none;
+        }
+
+        .gallery-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s var(--easing), filter 0.8s var(--easing);
+            filter: grayscale(100%) contrast(1.2);
+        }
+
+        .gallery-item:hover .gallery-img {
+            transform: scale(1.1);
+            filter: grayscale(0%) contrast(1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 40px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.4s var(--easing);
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .gallery-cat {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .gallery-title {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            font-weight: 700;
+            line-height: 1;
+            color: white;
+        }
+
+        /* Reveal Animation */
+        .reveal-up { opacity: 0; transform: translateY(50px); transition: all 0.8s var(--easing); }
+        .reveal-up.active { opacity: 1; transform: translateY(0); }
+
+        @media (max-width: 768px) {
+            .display-text { font-size: 3rem; }
+            .gallery-grid { grid-template-columns: 1fr; }
+            .nav-links { display: none; } /* Simplified for mobile */
+            .hamburger { display: block; }
+            .cursor-dot, .cursor-outline { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Elements -->
+    <div class="cursor-dot" data-cursor-dot></div>
+    <div class="cursor-outline" data-cursor-outline></div>
+    <div class="spotlight"></div>
+    <div class="noise"></div>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">
+                    <img src="assets/images/XLORA LOGO NEW.png" alt="Xlora Ads Logo">
+                </a>
+                <div class="nav-links">
+                    <a href="index.html#services">Services</a>
+                    <a href="works.html" style="color: var(--primary); opacity: 1;">Work</a>
+                    <a href="index.html#about">Agency</a>
+                    <a href="index.html#contact">Contact</a>
+                </div>
+                <div class="hamburger"><i class="fas fa-bars"></i></div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Works Hero -->
+    <section class="works-hero">
+        <div class="container">
+            <h1 class="display-text reveal-up">Made to <br>Impact.</h1>
+            <p class="reveal-up" style="transition-delay: 0.1s;">A curated selection of our most ambitious projects across branding, digital, and production.</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="section-padding" style="padding-top: 0;">
+        <div class="container">
+            
+            <!-- Filters -->
+            <div class="filter-container reveal-up" style="transition-delay: 0.2s;">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="branding">Branding</button>
+                <button class="filter-btn" data-filter="digital">Digital</button>
+                <button class="filter-btn" data-filter="production">Production</button>
+                <button class="filter-btn" data-filter="print">Print</button>
+            </div>
+
+            <!-- Gallery Grid -->
+            <div class="gallery-grid">
+                
+                <!-- Project 1 -->
+                <div class="gallery-item" data-category="digital">
+                    <img src="assets/images/service 1 (1).png" alt="Project Image" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <span class="gallery-cat">Digital Marketing</span>
+                        <h3 class="gallery-title">Azyan Gold</h3>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="gallery-item" data-category="branding">
+                    <img src="assets/images/client-bg.jpg" alt="Project Image" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <span class="gallery-cat">Branding</span>
+                        <h3 class="gallery-title">Hydromech</h3>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="gallery-item" data-category="production">
+                    <img src="assets/images/head 1.png" alt="Project Image" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <span class="gallery-cat">Video Production</span>
+                        <h3 class="gallery-title">Dubai Gold</h3>
+                    </div>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="gallery-item" data-category="print">
+                    <!-- Using placeholder for variety if images limited -->
+                    <div style="width:100%; height:100%; background: #1a1a1a; display:flex; align-items:center; justify-content:center;">
+                        <i class="fas fa-print" style="font-size: 3rem; color: #333;"></i>
+                    </div>
+                    <div class="gallery-overlay">
+                        <span class="gallery-cat">Print Design</span>
+                        <h3 class="gallery-title">Choppees</h3>
+                    </div>
+                </div>
+
+                <!-- Project 5 -->
+                <div class="gallery-item" data-category="branding">
+                    <img src="assets/images/slider-left-dec.png" alt="Project Image" class="gallery-img" style="object-fit: contain; padding: 40px; background: #0a0a0a;">
+                    <div class="gallery-overlay">
+                        <span class="gallery-cat">Branding</span>
+                        <h3 class="gallery-title">Neon Flux</h3>
+                    </div>
+                </div>
+
+                <!-- Project 6 -->
+                <div class="gallery-item" data-category="digital">
+                    <img src="assets/images/service-icon-03.png" alt="Project Image" class="gallery-img" style="object-fit: contain; padding: 50px; background: #111;">
+                    <div class="gallery-overlay">
+                        <span class="gallery-cat">Web Design</span>
+                        <h3 class="gallery-title">Apex Core</h3>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- CTA -->
+            <div style="text-align: center; margin-top: 100px;" class="reveal-up">
+                <h3 style="font-family: var(--font-display); font-size: 2rem; margin-bottom: 30px;">Have a project in mind?</h3>
+                <a href="index.html#contact" style="display: inline-flex; align-items: center; padding: 16px 36px; background: var(--primary); color: white; border-radius: 100px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">Start Conversation</a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <h2 style="font-family: var(--font-display);">XLORA<span>.</span></h2>
+                    <p style="color: var(--text-muted); max-width: 300px;">Mankada, Perinthalmanna<br>Kerala, India</p>
+                </div>
+                <div class="social-row">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+            <div style="border-top: 1px solid var(--border); padding-top: 30px; display: flex; justify-content: space-between; color: var(--text-muted); font-size: 0.8rem;">
+                <p>&copy; 2025 Xlora Ads.</p>
+                <p>Designed by Xlora.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // 1. Custom Cursor Logic (Same as Index)
+        const cursorDot = document.querySelector('[data-cursor-dot]');
+        const cursorOutline = document.querySelector('[data-cursor-outline]');
+        
+        window.addEventListener("mousemove", function(e) {
+            const posX = e.clientX;
+            const posY = e.clientY;
+            cursorDot.style.left = `${posX}px`;
+            cursorDot.style.top = `${posY}px`;
+            cursorOutline.animate({ left: `${posX}px`, top: `${posY}px` }, { duration: 500, fill: "forwards" });
+            document.body.style.setProperty('--x', `${posX}px`);
+            document.body.style.setProperty('--y', `${posY}px`);
+        });
+
+        // 2. Header Scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            header.classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        // 3. Scroll Reveal
+        const revealElements = document.querySelectorAll('.reveal-up');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) entry.target.classList.add('active');
+            });
+        }, { threshold: 0.1 });
+        revealElements.forEach(el => observer.observe(el));
+
+        // 4. Filtering Logic
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const galleryItems = document.querySelectorAll('.gallery-item');
+
+        // Initial stagger animation for grid
+        galleryItems.forEach((item, index) => {
+            setTimeout(() => item.classList.add('visible'), index * 100);
+        });
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const filterValue = btn.getAttribute('data-filter');
+
+                galleryItems.forEach(item => {
+                    // Reset visibility
+                    item.classList.remove('visible'); 
+                    
+                    // Delay slightly to allow exit animation if we were doing one, 
+                    // but for simplicity we just toggle display after a micro delay
+                    setTimeout(() => {
+                        if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                            item.classList.remove('hidden');
+                            // Trigger reflow
+                            void item.offsetWidth; 
+                            item.classList.add('visible');
+                        } else {
+                            item.classList.add('hidden');
+                        }
+                    }, 300);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

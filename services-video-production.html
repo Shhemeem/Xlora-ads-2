@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Production | Xlora Ads</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root { --bg-dark: #030305; --primary: #ff1f1f; --text-main: #ffffff; --text-muted: #888899; --font-display: 'Syne', sans-serif; --font-body: 'Inter', sans-serif; --border: rgba(255, 255, 255, 0.08); --easing: cubic-bezier(0.23, 1, 0.32, 1); }
+        * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; }
+        body { background-color: var(--bg-dark); color: var(--text-main); font-family: var(--font-body); line-height: 1.6; overflow-x: hidden; }
+        
+        .cursor-dot, .cursor-outline { position: fixed; top: 0; left: 0; transform: translate(-50%, -50%); border-radius: 50%; z-index: 9999; pointer-events: none; }
+        .cursor-dot { width: 8px; height: 8px; background-color: var(--primary); }
+        .cursor-outline { width: 40px; height: 40px; border: 1px solid rgba(255, 255, 255, 0.5); transition: width 0.2s, height 0.2s; }
+        body:hover .cursor-outline { opacity: 1; }
+        .spotlight { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; background: radial-gradient(600px circle at var(--x, 50%) var(--y, 50%), rgba(255, 31, 31, 0.15), transparent 40%); z-index: 1; }
+        .noise { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9998; opacity: 0.05; background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyBAMAAADsEZWCAAAAGFBMVEUAAAA5OTkAAABMTExERERmZmYzMzMzMzM2dOTMAAAAB3RSTlMABVDV7uPj6d1tFgAAABRJREFUeF5jYBgFoyEwGgKjITCaAAAEOAABK4QYgAAAAABJRU5ErkJggg=='); }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 2; }
+        .section-padding { padding: 120px 0; }
+        .display-text { font-family: var(--font-display); font-size: clamp(3rem, 6vw, 5rem); font-weight: 800; line-height: 1; letter-spacing: -2px; }
+        
+        header { position: fixed; top: 0; width: 100%; padding: 24px 0; z-index: 100; mix-blend-mode: difference; }
+        nav { display: flex; justify-content: space-between; align-items: center; }
+        .logo img { max-height: 50px; width: auto; }
+        .nav-links a { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; color: #fff; opacity: 0.7; text-decoration: none; margin-left: 30px; }
+        .nav-links a:hover { opacity: 1; color: var(--primary); }
+        .hamburger { display: none; font-size: 1.5rem; cursor: pointer; z-index: 101; color: white; }
+        footer { border-top: 1px solid var(--border); padding: 80px 0 30px; margin-top: 100px; }
+
+        .service-hero { padding: 180px 0 100px; position: relative; overflow: hidden; }
+        .video-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0.2; z-index: -1; background: url('assets/images/head 1.png') no-repeat center/cover; } /* Placeholder for actual video */
+        
+        .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; margin-top: 80px; }
+        .video-card { position: relative; border-radius: 20px; overflow: hidden; aspect-ratio: 16/9; background: #111; group: ; }
+        .play-btn { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 60px; height: 60px; background: rgba(255,255,255,0.2); backdrop-filter: blur(5px); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: 0.3s; }
+        .video-card:hover .play-btn { background: var(--primary); transform: translate(-50%, -50%) scale(1.1); }
+        .video-title { position: absolute; bottom: 20px; left: 20px; font-family: var(--font-display); font-size: 1.5rem; text-shadow: 0 2px 10px black; }
+
+        .reveal-up { opacity: 0; transform: translateY(30px); transition: all 0.8s var(--easing); }
+        .reveal-up.active { opacity: 1; transform: translateY(0); }
+        
+        @media (max-width: 768px) {
+            .hamburger { display: block; }
+            .nav-links {
+                position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+                background: var(--bg-dark); flex-direction: column; justify-content: center;
+                align-items: center; gap: 40px; transform: translateY(-100%);
+                transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1); z-index: 99;
+            }
+            .nav-links.active { transform: translateY(0); }
+            .nav-links a { font-size: 1.5rem; opacity: 1; margin: 0; }
+            
+            .card-grid { grid-template-columns: 1fr; }
+            .cursor-dot, .cursor-outline { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="cursor-dot" data-cursor-dot></div><div class="cursor-outline" data-cursor-outline></div><div class="spotlight"></div><div class="noise"></div>
+
+    <header><div class="container"><nav>
+        <a href="index.html" class="logo"><img src="assets/images/XLORA LOGO NEW.png" alt="Logo"></a>
+        <div class="nav-links"><a href="index.html#services">Back to Home</a><a href="works.html">View Work</a><a href="index.html#contact">Contact</a></div>
+        <div class="hamburger"><i class="fas fa-bars"></i></div>
+    </nav></div></header>
+
+    <section class="service-hero">
+        <div class="video-bg"></div>
+        <div class="container reveal-up">
+            <h4 style="color: var(--primary); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px;">Production</h4>
+            <h1 class="display-text">Cinematic <br>Storytelling.</h1>
+            <p style="font-size: 1.2rem; color: var(--text-muted); max-width: 500px; margin-top: 30px;">Video is the most powerful medium on earth. We capture the essence of your brand through high-end cinematography, motion graphics, and editing.</p>
+        </div>
+    </section>
+
+    <section class="section-padding container">
+        <h2 class="display-text" style="font-size: 2.5rem;">Capabilities.</h2>
+        <div class="card-grid reveal-up">
+            <div class="video-card">
+                <img src="assets/images/service 1 (1).png" style="width:100%; height:100%; object-fit:cover; opacity:0.7;">
+                <div class="play-btn"><i class="fas fa-play" style="color:white;"></i></div>
+                <h3 class="video-title">Corporate Films</h3>
+            </div>
+            <div class="video-card">
+                <img src="assets/images/head 1.png" style="width:100%; height:100%; object-fit:cover; opacity:0.7;">
+                <div class="play-btn"><i class="fas fa-play" style="color:white;"></i></div>
+                <h3 class="video-title">Social Reels</h3>
+            </div>
+            <div class="video-card">
+                <!-- Placeholder bg -->
+                <div style="width:100%; height:100%; background:#222;"></div>
+                <div class="play-btn"><i class="fas fa-play" style="color:white;"></i></div>
+                <h3 class="video-title">Product Shoots</h3>
+            </div>
+            <div class="video-card">
+                <div style="width:100%; height:100%; background:#222;"></div>
+                <div class="play-btn"><i class="fas fa-play" style="color:white;"></i></div>
+                <h3 class="video-title">Event Coverage</h3>
+            </div>
+        </div>
+    </section>
+
+    <footer class="container">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <p style="color: var(--text-muted);">Ready to shoot?</p>
+            <a href="index.html#contact" style="padding: 12px 30px; background: var(--primary); color: white; border-radius: 50px; text-decoration: none; font-weight: 700;">Start Production</a>
+        </div>
+        <div style="border-top: 1px solid var(--border); margin-top: 40px; padding-top: 20px; font-size: 0.8rem; color: var(--text-muted);">
+            &copy; 2025 Xlora Ads.
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        if(hamburger) {
+            hamburger.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                const icon = hamburger.querySelector('i');
+                icon.classList.toggle('fa-bars');
+                icon.classList.toggle('fa-times');
+            });
+        }
+
+        const cursorDot = document.querySelector('[data-cursor-dot]'), cursorOutline = document.querySelector('[data-cursor-outline]');
+        window.addEventListener("mousemove", e => {
+            const x = e.clientX, y = e.clientY;
+            cursorDot.style.left = `${x}px`; cursorDot.style.top = `${y}px`;
+            cursorOutline.animate({ left: `${x}px`, top: `${y}px` }, { duration: 500, fill: "forwards" });
+            document.body.style.setProperty('--x', `${x}px`); document.body.style.setProperty('--y', `${y}px`);
+        });
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add('active'); });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal-up').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Branding Services | Xlora Ads</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* --- CORE THEME (Same as Index) --- */
+        :root { --bg-dark: #030305; --primary: #ff1f1f; --text-main: #ffffff; --text-muted: #888899; --font-display: 'Syne', sans-serif; --font-body: 'Inter', sans-serif; --border: rgba(255, 255, 255, 0.08); --easing: cubic-bezier(0.23, 1, 0.32, 1); }
+        * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; }
+        body { background-color: var(--bg-dark); color: var(--text-main); font-family: var(--font-body); line-height: 1.6; overflow-x: hidden; }
+        
+        /* Effects */
+        .cursor-dot, .cursor-outline { position: fixed; top: 0; left: 0; transform: translate(-50%, -50%); border-radius: 50%; z-index: 9999; pointer-events: none; }
+        .cursor-dot { width: 8px; height: 8px; background-color: var(--primary); }
+        .cursor-outline { width: 40px; height: 40px; border: 1px solid rgba(255, 255, 255, 0.5); transition: width 0.2s, height 0.2s; }
+        body:hover .cursor-outline { opacity: 1; }
+        .spotlight { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; background: radial-gradient(600px circle at var(--x, 50%) var(--y, 50%), rgba(29, 29, 35, 0.4), transparent 40%); z-index: 1; }
+        .noise { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9998; opacity: 0.05; background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyBAMAAADsEZWCAAAAGFBMVEUAAAA5OTkAAABMTExERERmZmYzMzMzMzM2dOTMAAAAB3RSTlMABVDV7uPj6d1tFgAAABRJREFUeF5jYBgFoyEwGgKjITCaAAAEOAABK4QYgAAAAABJRU5ErkJggg=='); }
+
+        /* Layout */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 2; }
+        .section-padding { padding: 120px 0; }
+        .display-text { font-family: var(--font-display); font-size: clamp(3rem, 6vw, 5rem); font-weight: 800; line-height: 1; letter-spacing: -2px; }
+        
+        /* Header & Footer */
+        header { position: fixed; top: 0; width: 100%; padding: 24px 0; z-index: 100; mix-blend-mode: difference; }
+        nav { display: flex; justify-content: space-between; align-items: center; }
+        .logo img { max-height: 50px; width: auto; }
+        .nav-links { display: flex; gap: 40px; }
+        .nav-links a { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; color: #fff; opacity: 0.7; text-decoration: none; }
+        .nav-links a:hover { opacity: 1; color: var(--primary); }
+        footer { border-top: 1px solid var(--border); padding: 80px 0 30px; margin-top: 100px; }
+
+        /* --- PAGE SPECIFIC --- */
+        .service-hero { padding: 180px 0 100px; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .hero-desc { font-size: 1.2rem; color: var(--text-muted); margin-top: 30px; max-width: 500px; }
+        
+        .offer-list { margin-top: 60px; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
+        .offer-item { padding: 30px; border: 1px solid var(--border); border-radius: 20px; background: rgba(255,255,255,0.02); transition: 0.3s; }
+        .offer-item:hover { border-color: var(--primary); transform: translateY(-5px); }
+        .offer-item h3 { font-family: var(--font-display); font-size: 1.5rem; margin-bottom: 15px; }
+        .offer-item p { font-size: 0.9rem; color: var(--text-muted); }
+        .offer-icon { font-size: 2rem; color: var(--primary); margin-bottom: 20px; }
+
+        .process-row { display: flex; justify-content: space-between; margin-top: 80px; flex-wrap: wrap; gap: 40px; }
+        .process-step { flex: 1; min-width: 200px; position: relative; }
+        .process-step::after { content: ''; position: absolute; top: 20px; right: -20px; width: 40px; height: 1px; background: var(--border); }
+        .process-step:last-child::after { display: none; }
+        .step-num { font-family: var(--font-display); font-size: 4rem; color: rgba(255,255,255,0.1); font-weight: 800; line-height: 1; }
+        .step-title { font-size: 1.2rem; font-weight: 700; margin-top: 10px; }
+
+        /* Animation */
+        .reveal-up { opacity: 0; transform: translateY(30px); transition: all 0.8s var(--easing); }
+        .reveal-up.active { opacity: 1; transform: translateY(0); }
+        
+        @media (max-width: 768px) { .service-hero { grid-template-columns: 1fr; } .nav-links { display: none; } .process-step::after { display: none; } }
+    </style>
+</head>
+<body>
+    <div class="cursor-dot" data-cursor-dot></div><div class="cursor-outline" data-cursor-outline></div><div class="spotlight"></div><div class="noise"></div>
+
+    <header><div class="container"><nav>
+        <a href="index.html" class="logo"><img src="assets/images/XLORA LOGO NEW.png" alt="Logo"></a>
+        <div class="nav-links"><a href="index.html#services">Back to Home</a><a href="works.html">View Work</a><a href="index.html#contact">Contact</a></div>
+    </nav></div></header>
+
+    <section class="service-hero container">
+        <div class="reveal-up">
+            <h4 style="color: var(--primary); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px;">Service</h4>
+            <h1 class="display-text">Brand <br>Identity.</h1>
+            <p class="hero-desc">We don't just design logos; we forge identities. Your brand is your voice in a crowded room. We make sure it speaks loud, clear, and with purpose.</p>
+        </div>
+        <div class="reveal-up" style="transition-delay: 0.2s;">
+            <img src="assets/images/head 1.png" alt="Branding Art" style="filter: drop-shadow(0 0 30px rgba(255,31,31,0.2)); animation: float 6s infinite ease-in-out;">
+        </div>
+    </section>
+
+    <section class="section-padding container">
+        <h2 class="display-text" style="font-size: 3rem;">What We Deliver.</h2>
+        <div class="offer-list reveal-up">
+            <div class="offer-item">
+                <i class="fas fa-fingerprint offer-icon"></i>
+                <h3>Logo Design</h3>
+                <p>Memorable, scalable, and timeless marks that define your business at a glance.</p>
+            </div>
+            <div class="offer-item">
+                <i class="fas fa-book offer-icon"></i>
+                <h3>Brand Guidelines</h3>
+                <p>The rulebook for your visual language. Typography, color palettes, and usage rules.</p>
+            </div>
+            <div class="offer-item">
+                <i class="fas fa-bullseye offer-icon"></i>
+                <h3>Strategy</h3>
+                <p>Positioning your brand to target the right audience with the right message.</p>
+            </div>
+            <div class="offer-item">
+                <i class="fas fa-pen-fancy offer-icon"></i>
+                <h3>Copywriting</h3>
+                <p>Finding your brand's voice and tone to communicate effectively across all channels.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding container" style="border-top: 1px solid var(--border);">
+        <h2 class="display-text" style="font-size: 3rem;">Our Process.</h2>
+        <div class="process-row reveal-up">
+            <div class="process-step">
+                <div class="step-num">01</div>
+                <div class="step-title">Discovery</div>
+                <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 10px;">We dive deep into your business goals and audience.</p>
+            </div>
+            <div class="process-step">
+                <div class="step-num">02</div>
+                <div class="step-title">Concept</div>
+                <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 10px;">Drafting sketches and exploring visual directions.</p>
+            </div>
+            <div class="process-step">
+                <div class="step-num">03</div>
+                <div class="step-title">Refine</div>
+                <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 10px;">Polishing the chosen direction to perfection.</p>
+            </div>
+            <div class="process-step">
+                <div class="step-num">04</div>
+                <div class="step-title">Launch</div>
+                <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 10px;">Delivering assets ready for the real world.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="container">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <p style="color: var(--text-muted);">Ready to build your legacy?</p>
+            <a href="index.html#contact" style="padding: 12px 30px; background: var(--primary); color: white; border-radius: 50px; text-decoration: none; font-weight: 700;">Start Branding</a>
+        </div>
+        <div style="border-top: 1px solid var(--border); margin-top: 40px; padding-top: 20px; font-size: 0.8rem; color: var(--text-muted);">
+            &copy; 2025 Xlora Ads.
+        </div>
+    </footer>
+
+    <script>
+        // Common Logic (Cursor & Scroll)
+        const cursorDot = document.querySelector('[data-cursor-dot]'), cursorOutline = document.querySelector('[data-cursor-outline]');
+        window.addEventListener("mousemove", e => {
+            const x = e.clientX, y = e.clientY;
+            cursorDot.style.left = `${x}px`; cursorDot.style.top = `${y}px`;
+            cursorOutline.animate({ left: `${x}px`, top: `${y}px` }, { duration: 500, fill: "forwards" });
+            document.body.style.setProperty('--x', `${x}px`); document.body.style.setProperty('--y', `${y}px`);
+        });
+        
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add('active'); });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal-up').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
