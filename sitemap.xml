@@ -7,5 +7,40 @@
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
+  <url>
+  <loc>https://xloraads.com/</loc>
+</url>
+
+<url>
+  <loc>https://xloraads.com/works.html</loc>
+</url>
+
+<url>
+  <loc>https://xloraads.com/services-branding.html</loc>
+</url>
+
+<url>
+  <loc>https://xloraads.com/services-advertising.html</loc>
+</url>
+
+<url>
+  <loc>https://xloraads.com/services-video-production.html</loc>
+</url>
+
+<url>
+  <loc>https://xloraads.com/services-digital-marketing.html</loc>
+</url>
+
+<url>
+  <loc>https://xloraads.com/services-printing-gifting.html</loc>
+</url>
+
+<url>
+  <loc>https://xloraads.com/works.html</loc>
+</url>
+
+<url>
+  <loc>https://xloraads.com/contact.html</loc>
+</url>
 
 </urlset>
