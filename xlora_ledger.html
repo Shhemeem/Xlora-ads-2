@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>xlora_measure — Architectural Sizing & Clearance Portal</title>
-  <link rel="icon" href="assets/images/favicon.ico" type="image/gif" />
+  
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Google Font: Inter -->
@@ -334,7 +334,7 @@
         <!-- Tab Controls Navigation Bar -->
         <div class="border-b border-slate-200 flex items-center justify-between">
           <div class="flex gap-4">
-            <button onclick="setActiveTab('workpieces')" id="tab-workpieces-btn" class="pb-3 text-xs font-black uppercase tracking-widest flex items-center gap-2 border-b-2 border-amber-500 text-amber-600 font-black transition">
+            <button onclick="setActiveTab('workpieces')" id="tab-workpieces-btn" class="pb-3 text-xs font-black uppercase tracking-widest flex items-center gap-2 border-b-2 border-amber-500 text-amber-605 font-black transition">
               <i data-lucide="layers" class="w-4 h-4"></i>
               Workpiece Specs (<span id="tab-workpieces-count" class="font-mono">0</span>)
             </button>
@@ -437,7 +437,7 @@
         <div class="lg:col-span-7 bg-white border border-slate-200 rounded-3xl p-6 flex flex-col gap-4 shadow-sm">
           <div>
             <h3 class="font-extrabold text-xs uppercase tracking-widest text-slate-700 flex items-center gap-2 font-mono">
-              <i data-lucide="message-square" class="w-4 h-4 text-amber-650"></i>
+              <i data-lucide="message-square" class="w-4 h-4 text-amber-655"></i>
               Request Modifications / Feedback
             </h3>
             <p class="text-xs text-slate-500 mt-1.5 leading-relaxed">
@@ -447,7 +447,7 @@
 
           <form onsubmit="submitPortalComment(event)" class="flex flex-col gap-3">
             <textarea id="portal-comment-textarea" rows="3" required placeholder="e.g. Can we expand the dining table length to 102 inches? We measured the alcove clearance once more..." class="w-full bg-slate-50 border border-slate-200 rounded-2xl p-4 text-xs text-slate-800 placeholder:text-slate-400 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500/35 transition resize-none font-sans"></textarea>
-            <button type="submit" class="self-end bg-amber-500 hover:bg-amber-600 text-slate-950 text-xs font-black px-5 py-2.5 rounded-xl transition flex items-center gap-1.5 shadow-sm uppercase tracking-wider font-mono">
+            <button type="submit" class="self-end bg-amber-500 hover:bg-amber-600 text-slate-955 text-xs font-black px-5 py-2.5 rounded-xl transition flex items-center gap-1.5 shadow-sm uppercase tracking-wider font-mono">
               Transmit Revision Note
             </button>
           </form>
@@ -506,7 +506,7 @@
         </div>
 
         <div class="flex items-center justify-end gap-2 border-t border-slate-100 pt-3">
-          <button type="button" onclick="closeModal('authModal')" class="bg-transparent hover:bg-slate-50 text-slate-505 text-xs px-4 py-2 rounded-xl transition font-mono">Cancel</button>
+          <button type="button" onclick="closeModal('authModal')" class="bg-transparent hover:bg-slate-50 text-slate-550 text-xs px-4 py-2 rounded-xl transition font-mono">Cancel</button>
           <button id="auth-submit-btn" type="submit" class="bg-amber-500 hover:bg-amber-600 text-slate-950 text-xs font-black px-5 py-2.5 rounded-xl transition flex items-center justify-center gap-1.5 shadow-sm uppercase tracking-wider font-mono">
             Deploy Session
           </button>
@@ -634,6 +634,18 @@
             <div>
               <label class="block text-[10px] text-slate-405 uppercase font-black tracking-wide mb-1 font-mono">Workpiece Designation *</label>
               <input type="text" id="workpiece-title" required placeholder="e.g. Dining Bench Plank" class="w-full bg-slate-50 border border-slate-200 text-slate-800 placeholder:text-slate-405 rounded-xl px-3.5 py-2.5 text-xs focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500/35 transition-all">
+            </div>
+
+            <!-- Measured / Verified Person Dropdown Picker -->
+            <div>
+              <label class="block text-[10px] text-slate-405 uppercase font-black tracking-wide mb-1 font-mono">Measured / Verified By</label>
+              <select id="workpiece-measured-by" class="w-full bg-slate-50 border border-slate-200 text-slate-800 rounded-xl px-3.5 py-2.5 text-xs focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500/35 transition-all">
+                <option value="Lead Designer">Lead Designer</option>
+                <option value="Senior Craftsman">Senior Craftsman</option>
+                <option value="Site Surveyor">Site Surveyor</option>
+                <option value="Apprentice Woodworker">Apprentice Woodworker</option>
+                <option value="Client (Self-Measured)">Client (Self-Measured)</option>
+              </select>
             </div>
             
             <!-- Dimension Parameters with Individual Unit Dropdowns -->
@@ -768,6 +780,18 @@
               <input type="text" id="site-label" required placeholder="e.g. Penthouse South Wall Alcove" class="w-full bg-slate-50 border border-slate-200 text-slate-800 placeholder:text-slate-400 rounded-xl px-3.5 py-2.5 text-xs focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500/35 transition-all">
             </div>
 
+            <!-- Measured / Verified Person Dropdown Picker for Site -->
+            <div>
+              <label class="block text-[10px] text-slate-405 uppercase font-black tracking-wide mb-1 font-mono">Measured / Verified By</label>
+              <select id="site-measured-by" class="w-full bg-slate-50 border border-slate-200 text-slate-800 rounded-xl px-3.5 py-2.5 text-xs focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500/35 transition-all">
+                <option value="Lead Designer">Lead Designer</option>
+                <option value="Senior Craftsman">Senior Craftsman</option>
+                <option value="Site Surveyor">Site Surveyor</option>
+                <option value="Apprentice Woodworker">Apprentice Woodworker</option>
+                <option value="Client (Self-Measured)">Client (Self-Measured)</option>
+              </select>
+            </div>
+
             <div>
               <span class="block text-[10px] text-slate-450 uppercase font-black tracking-wide mb-1.5 font-mono">Measured Clearances</span>
               <div class="grid grid-cols-2 gap-3">
@@ -872,7 +896,7 @@
 
         <div class="flex items-center justify-end gap-2 border-t border-slate-100 pt-3.5">
           <button type="button" onclick="closeSiteModal()" class="bg-transparent hover:bg-slate-50 text-slate-550 text-xs px-4 py-2 rounded-xl transition font-mono">Cancel</button>
-          <button id="site-modal-submit-btn" type="submit" class="bg-amber-500 hover:bg-amber-600 text-slate-950 text-xs font-bold px-4 py-2 rounded-xl transition font-mono">Deploy Clearance Specs</button>
+          <button id="site-modal-submit-btn" type="submit" class="bg-amber-500 hover:bg-amber-600 text-slate-955 text-xs font-bold px-4 py-2 rounded-xl transition font-mono">Deploy Clearance Specs</button>
         </div>
       </form>
     </div>
@@ -903,10 +927,10 @@
           </div>
         </div>
         <div class="grid grid-cols-3 gap-2 pt-2">
-          <button onclick="copyShareLinkToClipboard()" class="bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 rounded-xl py-2.5 font-bold flex items-center justify-center gap-1.5 transition shadow-sm">
+          <button onclick="copyShareLinkToClipboard()" class="bg-white hover:bg-slate-50 text-slate-707 border border-slate-200 rounded-xl py-2.5 font-bold flex items-center justify-center gap-1.5 transition shadow-sm">
             <i data-lucide="copy" class="w-3.5 h-3.5 text-amber-600"></i> Copy Link
           </button>
-          <button onclick="shareToWhatsAppDirectly()" class="bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 rounded-xl py-2.5 font-bold flex items-center justify-center gap-1.5 transition shadow-sm">
+          <button onclick="shareToWhatsAppDirectly()" class="bg-white hover:bg-slate-50 text-slate-707 border border-slate-200 rounded-xl py-2.5 font-bold flex items-center justify-center gap-1.5 transition shadow-sm">
             <i data-lucide="message-circle" class="w-3.5 h-3.5 text-emerald-600"></i> WhatsApp
           </button>
           <button onclick="openPortalLinkDirectly()" class="bg-amber-500 hover:bg-amber-600 text-slate-950 rounded-xl py-2.5 font-extrabold flex items-center justify-center gap-1.5 transition shadow-md shadow-amber-500/10">
@@ -927,26 +951,26 @@
           </div>
           <h3 id="confirm-dialog-title" class="font-extrabold text-sm uppercase tracking-wide text-slate-755 font-mono">Are you sure?</h3>
         </div>
-        <p id="confirm-dialog-message" class="text-xs text-slate-500 leading-relaxed"></p>
+        <p id="confirm-dialog-message" class="text-xs text-slate-400 leading-relaxed"></p>
         <div class="flex items-center justify-end gap-2 pt-2 border-t border-slate-100">
           <button id="confirm-dialog-cancel-btn" type="button" class="bg-transparent hover:bg-slate-50 text-slate-500 text-xs px-4 py-2 rounded-xl transition font-mono">Cancel</button>
-          <button id="confirm-dialog-submit-btn" type="button" class="bg-amber-500 hover:bg-amber-600 text-slate-950 text-xs font-bold px-4 py-2 rounded-xl transition font-mono">Confirm</button>
+          <button id="confirm-dialog-submit-btn" type="button" class="bg-amber-500 hover:bg-amber-600 text-slate-955 text-xs font-bold px-4 py-2 rounded-xl transition font-mono">Confirm</button>
         </div>
       </div>
     </div>
   </div>
 
   <!-- Workshop Print Sheet Modal Overlay -->
-  <div id="workshopPrintOverlay" class="fixed inset-0 bg-slate-900/40 backdrop-blur-md z-[60] overflow-y-auto p-4 md:p-8 hidden screen-only">
+  <div id="workshopPrintOverlay" class="fixed inset-0 bg-slate-905/95 backdrop-blur-md z-[60] overflow-y-auto p-4 md:p-8 hidden screen-only">
     <div class="max-w-4xl mx-auto bg-white text-zinc-900 border border-zinc-200 rounded-2xl shadow-xl p-6 md:p-10 space-y-6 relative animate-fade-in">
       <!-- Controls -->
       <div class="flex items-center justify-between border-b border-zinc-100 pb-4 mb-4">
         <div class="flex items-center gap-2">
-          <span class="bg-amber-500 text-slate-950 p-1.5 rounded-lg flex items-center justify-center"><i data-lucide="printer" class="w-4 h-4"></i></span>
+          <span class="bg-amber-500 text-slate-955 p-1.5 rounded-lg flex items-center justify-center"><i data-lucide="printer" class="w-4 h-4"></i></span>
           <h3 class="font-bold text-zinc-900 text-sm font-mono">Print Workshop Cut Sheets & Specs</h3>
         </div>
         <div class="flex gap-2">
-          <button onclick="window.print()" class="bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold text-xs px-4 py-2 rounded-xl transition flex items-center gap-1.5 shadow">
+          <button onclick="window.print()" class="bg-amber-500 hover:bg-amber-400 text-slate-955 font-bold text-xs px-4 py-2 rounded-xl transition flex items-center gap-1.5 shadow">
             <i data-lucide="printer" class="w-3.5 h-3.5"></i> Trigger System Print
           </button>
           <button onclick="closeModal('workshopPrintOverlay')" class="bg-zinc-100 hover:bg-zinc-200 text-zinc-700 font-bold text-xs px-4 py-2 rounded-xl transition font-mono">
@@ -963,7 +987,7 @@
   </div>
 
   <!-- Image Viewer Modal (Lightbox Container) -->
-  <div id="imageViewerModal" onclick="closeModal('imageViewerModal')" class="fixed inset-0 bg-slate-900/60 backdrop-blur-md z-[110] flex flex-col items-center justify-center p-4 hidden animate-fade-in screen-only cursor-zoom-out">
+  <div id="imageViewerModal" onclick="closeModal('imageViewerModal')" class="fixed inset-0 bg-slate-955/95 backdrop-blur-md z-[110] flex flex-col items-center justify-center p-4 hidden animate-fade-in screen-only cursor-zoom-out">
     <div class="absolute top-4 right-4 flex items-center gap-2" onclick="event.stopPropagation()">
       <button onclick="closeModal('imageViewerModal')" class="bg-white hover:bg-slate-50 text-slate-800 p-2.5 rounded-full border border-slate-200 transition flex items-center justify-center shadow-lg">
         <i data-lucide="x" class="w-5 h-5"></i>
@@ -1007,7 +1031,8 @@
       editingItemId: null,
       editingSiteId: null,
       tempItemImages: [],
-      tempSiteImages: []
+      tempSiteImages: [],
+      portalOwnerId: null // Stores shared designer's ID when acting as a guest in client view
     };
 
     // Firebase configurations
@@ -1036,6 +1061,7 @@
               depth: '2', depthUnit: 'inches' 
             },
             woodType: 'Walnut',
+            measuredBy: 'Lead Designer',
             notes: 'Hand-picked organic black walnut live-edge slab. Double trapezoid steel legs in refined sandblasted matte black.',
             images: ['https://images.unsplash.com/photo-1577140917170-285929fb55b7?auto=format&fit=crop&w=800&q=80']
           },
@@ -1049,6 +1075,7 @@
               depth: '4', depthUnit: 'cm' 
             },
             woodType: 'Oak',
+            measuredBy: 'Senior Craftsman',
             notes: 'To match main walnut slab edge structure. Must slide entirely beneath table envelope cleanly.',
             images: []
           }
@@ -1063,6 +1090,7 @@
               height: '110', heightUnit: 'inches', 
               depth: '12', depthUnit: 'cm' 
             },
+            measuredBy: 'Site Surveyor',
             notes: 'AC floor vents require a strict safety margin clearance on the west side corner.',
             images: ['https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=800&q=80']
           }
@@ -1070,47 +1098,6 @@
         feedback: [
           { sender: 'Client', text: 'The dining table dimensions look absolutely spot on! Cant wait to see the raw cut planks.', timestamp: Date.now() - 86400000 * 2 }
         ]
-      },
-      {
-        id: 'client-2',
-        name: 'Verdant Roasters Café',
-        email: 'build@verdantcoffee.co',
-        phone: '+1 (555) 721-0044',
-        category: 'Commercial Fit',
-        notes: 'Concrete Espresso Counter Overlay & Dual industrial steel framing brackets.',
-        createdAt: Date.now() - 86400000 * 12,
-        updatedAt: Date.now() - 86400000 * 10,
-        status: 'Approved',
-        items: [
-          {
-            id: 'item-103',
-            title: 'Barista Counter Overlay Slab',
-            dimensions: { 
-              length: '320', lengthUnit: 'cm', 
-              width: '85', widthUnit: 'cm', 
-              height: '95', heightUnit: 'cm', 
-              depth: '4', depthUnit: 'cm' 
-            },
-            woodType: 'Maple',
-            notes: 'Seamless fluid stone aggregate concrete overlay with precise grommet holes drilled at designated drill tags.',
-            images: ['https://images.unsplash.com/photo-1498804103079-a6351b050096?auto=format&fit=crop&w=800&q=80']
-          }
-        ],
-        siteMeasures: [
-          {
-            id: 'site-102',
-            label: 'Brick Counter Base Frame',
-            dimensions: { 
-              length: '3.3', lengthUnit: 'feet', 
-              width: '90', widthUnit: 'cm', 
-              height: '90', heightUnit: 'cm', 
-              depth: '0', depthUnit: 'inches' 
-            },
-            notes: 'Existing brick base foundations. Must verify surface level metrics before pouring concrete top.',
-            images: []
-          }
-        ],
-        feedback: []
       }
     ];
 
@@ -1127,6 +1114,11 @@
         case 'ft': return val * 12;
         default: return val;
       }
+    };
+
+    // Helper to retrieve current active user path segregating data per account
+    const getActiveUserId = () => {
+      return auth?.currentUser?.uid || 'default-guest';
     };
 
     // Attempt Firebase Bootstrap with strict Auth rule checks
@@ -1163,34 +1155,38 @@
       }
     };
 
-    // Rule 3 Priority Authenticator Logic
+    // Rule 3 Priority Authenticator Logic with persistent onAuthStateChanged listener
     const initAuth = async () => {
       try {
         if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
           const cred = await signInWithCustomToken(auth, __initial_auth_token);
           appState.currentUser = cred.user;
-        } else {
-          const cred = await signInAnonymously(auth);
-          appState.currentUser = cred.user;
         }
-        appState.isOffline = false;
-        updateAuthUI(appState.currentUser);
-        setupFirestoreSubscription();
-
-        // Listen for changes
-        onAuthStateChanged(auth, (usr) => {
-          if (usr) {
-            appState.currentUser = usr;
-            updateAuthUI(usr);
-          } else {
-            appState.currentUser = null;
-            updateAuthUI(null);
-          }
-        });
       } catch (err) {
-        console.error("Auth pipeline blocked, shifting to local cache:", err);
-        loadOfflineSandbox();
+        console.error("Auth custom token initialization failed:", err);
       }
+
+      // Automatically recover login state or authenticate anonymously to prevent path errors
+      onAuthStateChanged(auth, async (usr) => {
+        if (usr) {
+          appState.currentUser = usr;
+          appState.isOffline = false;
+          updateAuthUI(usr);
+          setupFirestoreSubscription(usr.uid);
+        } else {
+          try {
+            // Keep guest/anon sessions unique to prevent collisions in public views (Rule 1 & Rule 3)
+            const cred = await signInAnonymously(auth);
+            appState.currentUser = cred.user;
+            appState.isOffline = false;
+            updateAuthUI(cred.user);
+            setupFirestoreSubscription(cred.user.uid);
+          } catch (anonErr) {
+            console.error("Anonymous auth observer fallback failed:", anonErr);
+            loadOfflineSandbox();
+          }
+        }
+      });
     };
 
     const loadOfflineSandbox = () => {
@@ -1205,27 +1201,32 @@
         }
       }
       
-      const localData = localStorage.getItem('cs_mock_clients');
+      const localData = localStorage.getItem('cs_mock_clients_v2');
       if (localData) {
         appState.clients = JSON.parse(localData);
       } else {
         appState.clients = seedMockClients;
-        localStorage.setItem('cs_mock_clients', JSON.stringify(seedMockClients));
+        localStorage.setItem('cs_mock_clients_v2', JSON.stringify(seedMockClients));
       }
       renderClientLedger();
       parseUrlDeepLink();
     };
 
-    const setupFirestoreSubscription = () => {
-      if (!auth.currentUser) return; // Auth Guard
+    // Subscribes strictly to current account subcollection route
+    const setupFirestoreSubscription = (userId) => {
+      if (!userId) return; // Auth Guard
 
       document.getElementById('sync-status-text').textContent = "Cloud Sync Active";
       
-      // Public ledger path rule (Rule 1)
-      const clientsRef = collection(db, 'artifacts', appId, 'public', 'data', 'clients');
+      // Strict user-specific path (Rule 1 mandate & user data segregation)
+      const clientsRef = collection(db, 'artifacts', appId, 'users', userId, 'clients');
       
-      // Subscribe with error callbacks (Mandatory Rule)
-      onSnapshot(clientsRef, (snapshot) => {
+      // Remove previous listener on change to prevent duplicate streams
+      if (window.activeClientsUnsubscribe) {
+        window.activeClientsUnsubscribe();
+      }
+
+      window.activeClientsUnsubscribe = onSnapshot(clientsRef, (snapshot) => {
         const clientsList = [];
         snapshot.forEach((doc) => {
           clientsList.push({ id: doc.id, ...doc.data() });
@@ -1243,8 +1244,31 @@
         }
         parseUrlDeepLink();
       }, (error) => {
-        console.error("Firestore subscription failed, fall back to sandbox:", error);
-        loadOfflineSandbox();
+        console.error("Firestore database clients sub collection failed:", error);
+      });
+    };
+
+    // Subscribes directly to shared document in target designer's private path (Rule 1 & Rule 2)
+    const setupClientPortalSubscription = (ownerId, clientId) => {
+      if (!ownerId || !clientId) return;
+
+      const clientDocRef = doc(db, 'artifacts', appId, 'users', ownerId, 'clients', clientId);
+
+      if (window.activePortalUnsubscribe) {
+        window.activePortalUnsubscribe();
+      }
+
+      window.activePortalUnsubscribe = onSnapshot(clientDocRef, (docSnap) => {
+        if (docSnap.exists()) {
+          appState.activeClient = { id: docSnap.id, ...docSnap.data() };
+          appState.portalOwnerId = ownerId; // Save path ID to route feedback correctly
+          switchView('client-portal');
+        } else {
+          triggerToast("Shared layout specifications not found.", "error");
+        }
+      }, (error) => {
+        console.error("Portal share subscriber fetch failed:", error);
+        triggerToast("Unable to load shared workspace specs.", "error");
       });
     };
 
@@ -1313,6 +1337,7 @@
         async () => {
           try {
             await signOut(auth);
+            appState.activeClient = null;
             triggerToast("Account session cleared successfully.");
           } catch (err) {
             triggerToast("Failed to sign out cleanly.", "error");
@@ -1379,7 +1404,7 @@
       const submitBtn = document.getElementById('confirm-dialog-submit-btn');
       submitBtn.textContent = confirmText;
       submitBtn.className = `text-xs font-bold px-4 py-2 rounded-xl transition shadow-md ${
-        type === 'danger' ? 'bg-rose-600 hover:bg-rose-500 text-white' : 'bg-amber-500 hover:bg-amber-600 text-slate-950'
+        type === 'danger' ? 'bg-rose-600 hover:bg-rose-500 text-white' : 'bg-amber-500 hover:bg-amber-600 text-slate-955'
       }`;
 
       const cleanSubmit = submitBtn.cloneNode(true);
@@ -1564,7 +1589,6 @@
 
       return `
         <svg viewBox="0 0 300 200" class="w-full h-44 drop-shadow-sm">
-          <!-- Engineering Grid Background -->
           <defs>
             <rect id="grid" width="15" height="15" fill="none" stroke="rgba(15, 23, 42, 0.02)" stroke-width="0.5"/>
             <pattern id="grid-pattern" width="15" height="15" patternUnits="userSpaceOnUse">
@@ -1708,7 +1732,7 @@
         const isActive = activeClient.status === status;
         return `
           <button onclick="updatePipelineStatus('${status}')" class="text-[9px] font-bold px-2 py-1 rounded border transition ${
-            isActive ? 'bg-amber-500 border-amber-500 text-slate-950 font-black' : 'bg-slate-50 text-slate-500 border-slate-200 hover:bg-slate-100'
+            isActive ? 'bg-amber-500 border-amber-500 text-slate-955 font-black' : 'bg-slate-50 text-slate-500 border-slate-200 hover:bg-slate-100'
           }">
             ${status}
           </button>
@@ -1816,8 +1840,8 @@
 
                     <!-- Material Selector -->
                     <div class="bg-slate-50 border border-slate-100 p-2.5 rounded-xl text-[10px] space-y-1.5">
-                      <div class="flex items-center justify-between text-slate-500">
-                        <span class="font-semibold uppercase tracking-wider font-mono text-[9px] flex items-center gap-1 text-slate-600">
+                      <div class="flex items-center justify-between text-slate-400">
+                        <span class="font-semibold uppercase tracking-wider font-mono text-[9px] flex items-center gap-1 text-slate-650">
                           <i data-lucide="sliders" class="w-3 h-3 text-amber-600"></i> Material Choice
                         </span>
                         <select onchange="updateItemWoodMaterial('${item.id}', this.value)" class="bg-white border border-slate-205 text-amber-700 rounded px-1.5 py-0.5 text-[9px] font-mono focus:outline-none font-bold">
@@ -1860,9 +1884,15 @@
                     </div>
                     ` : ''}
 
+                    <!-- Custom Craftsman Measured By Display -->
+                    <div class="flex justify-between items-center text-[10px] text-slate-500 font-mono bg-slate-50 p-2 rounded-lg border border-slate-100">
+                      <span>Measured By:</span>
+                      <span class="font-bold text-amber-800">${item.measuredBy || 'Lead Designer'}</span>
+                    </div>
+
                     <!-- Sizes -->
                     <div class="bg-slate-50 rounded-xl p-2.5 border border-slate-100 mt-auto font-mono">
-                      <span class="text-[9px] uppercase font-bold text-slate-400 tracking-wider block mb-1">Architectural Blueprint Sizing</span>
+                      <span class="text-[9px] uppercase font-bold text-slate-400 tracking-wider block mb-1">Architectural Sizing</span>
                       <div class="grid grid-cols-4 gap-1 text-center text-[10px]">
                         <div class="bg-white py-1.5 rounded-lg border border-slate-150">
                           <span class="text-[7.5px] text-slate-400 block leading-none">LENGTH</span>
@@ -1941,10 +1971,10 @@
                       </div>
                     `}
                     <div class="absolute top-2.5 right-2.5 flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-all z-10">
-                      <button onclick="openEditSiteMeasureModal('${site.id}')" class="bg-white/90 hover:bg-white text-slate-500 hover:text-amber-600 p-1.5 rounded-lg border border-slate-200 shadow animate-fade-in" title="Edit site spec">
+                      <button onclick="openEditSiteMeasureModal('${site.id}')" class="bg-white/90 hover:bg-white text-slate-505 hover:text-amber-600 p-1.5 rounded-lg border border-slate-200 shadow animate-fade-in" title="Edit site spec">
                         <i data-lucide="edit" class="w-3.5 h-3.5 flex items-center justify-center"></i>
                       </button>
-                      <button onclick="deleteSiteSpec('${site.id}')" class="bg-white/90 hover:bg-rose-50 text-slate-500 hover:text-rose-600 p-1.5 rounded-lg border border-slate-200 shadow animate-fade-in" title="Purge site blueprints">
+                      <button onclick="deleteSiteSpec('${site.id}')" class="bg-white/90 hover:bg-rose-50 text-slate-505 hover:text-rose-600 p-1.5 rounded-lg border border-slate-200 shadow animate-fade-in" title="Purge site blueprints">
                         <i data-lucide="trash-2" class="w-3.5 h-3.5 flex items-center justify-center"></i>
                       </button>
                     </div>
@@ -1957,6 +1987,13 @@
                       </div>
                       ${site.notes ? `<p class="text-[11px] text-slate-500 mt-1.5 line-clamp-2 leading-relaxed italic">"${site.notes}"</p>` : ''}
                     </div>
+
+                    <!-- Custom Surveyor Name Display -->
+                    <div class="flex justify-between items-center text-[10px] text-slate-500 font-mono bg-slate-50 p-2 rounded-lg border border-slate-100">
+                      <span>Verified By:</span>
+                      <span class="font-bold text-amber-850">${site.measuredBy || 'Lead Designer'}</span>
+                    </div>
+
                     <div class="bg-slate-50 rounded-xl p-2.5 border border-slate-100 mt-auto font-mono">
                       <span class="text-[9px] uppercase font-bold text-slate-400 tracking-wider block mb-1">Physical Clearance Perimeter</span>
                       <div class="grid grid-cols-4 gap-1 text-center text-[10px]">
@@ -2078,7 +2115,7 @@
 
       if (!appState.isOffline && db) {
         try {
-          const colRef = collection(db, 'artifacts', appId, 'public', 'data', 'clients');
+          const colRef = collection(db, 'artifacts', appId, 'users', getActiveUserId(), 'clients');
           const docRef = await addDoc(colRef, payload);
           triggerToast(`Specs folder for ${name} initialized!`);
         } catch (err) {
@@ -2096,7 +2133,7 @@
 
     const commitLocalMock = (updatedList) => {
       appState.clients = updatedList;
-      localStorage.setItem('cs_mock_clients', JSON.stringify(updatedList));
+      localStorage.setItem('cs_mock_clients_v2', JSON.stringify(updatedList));
       renderClientLedger();
     };
 
@@ -2108,7 +2145,7 @@
         async () => {
           if (!appState.isOffline && db) {
             try {
-              const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'clients', clientId);
+              const docRef = doc(db, 'artifacts', appId, 'users', getActiveUserId(), 'clients', clientId);
               await deleteDoc(docRef);
               appState.activeClient = null;
               triggerToast("Spec database records wiped.");
@@ -2135,7 +2172,7 @@
       );
     };
 
-    // Client portal sharing setups
+    // Client portal sharing setups containing owner UID parameters
     window.shareActiveClient = () => {
       const active = appState.activeClient;
       if (!active) return;
@@ -2150,7 +2187,7 @@
       document.getElementById('share-modal-client-name').textContent = target.name;
       
       const origin = window.location.origin + window.location.pathname;
-      const shareLink = `${origin}?client=${target.id}`;
+      const shareLink = `${origin}?client=${target.id}&owner=${getActiveUserId()}`;
       document.getElementById('share-modal-link-preview').textContent = shareLink;
 
       openModal('shareSpecModal');
@@ -2238,7 +2275,7 @@
 
       if (!appState.isOffline && db) {
         try {
-          const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'clients', clientId);
+          const docRef = doc(db, 'artifacts', appId, 'users', getActiveUserId(), 'clients', clientId);
           await updateDoc(docRef, {
             ...updatedFields,
             updatedAt: Date.now()
@@ -2268,6 +2305,7 @@
       document.getElementById('workpiece-modal-submit-btn').textContent = 'Save Specifications';
 
       document.getElementById('workpiece-title').value = item.title || '';
+      document.getElementById('workpiece-measured-by').value = item.measuredBy || 'Lead Designer';
       document.getElementById('workpiece-length').value = item.dimensions?.length || '';
       document.getElementById('workpiece-length-unit').value = item.dimensions?.lengthUnit || 'inches';
       document.getElementById('workpiece-width').value = item.dimensions?.width || '';
@@ -2303,6 +2341,7 @@
       document.getElementById('site-modal-submit-btn').textContent = 'Save Clearance Specs';
 
       document.getElementById('site-label').value = site.label || '';
+      document.getElementById('site-measured-by').value = site.measuredBy || 'Lead Designer';
       document.getElementById('site-length').value = site.dimensions?.length || '';
       document.getElementById('site-length-unit').value = site.dimensions?.lengthUnit || 'inches';
       document.getElementById('site-width').value = site.dimensions?.width || '';
@@ -2364,6 +2403,7 @@
       if (!client) return;
 
       const title = document.getElementById('workpiece-title').value;
+      const measuredBy = document.getElementById('workpiece-measured-by').value;
       const length = document.getElementById('workpiece-length').value;
       const lengthUnit = document.getElementById('workpiece-length-unit').value;
       const width = document.getElementById('workpiece-width').value;
@@ -2381,6 +2421,7 @@
             return {
               ...item,
               title,
+              measuredBy,
               dimensions: { length, lengthUnit, width, widthUnit, height, heightUnit, depth, depthUnit },
               notes,
               images: appState.tempItemImages || []
@@ -2393,6 +2434,7 @@
         const newItem = {
           id: 'item-' + Date.now(),
           title,
+          measuredBy,
           dimensions: { length, lengthUnit, width, widthUnit, height, heightUnit, depth, depthUnit },
           woodType: 'Walnut',
           notes,
@@ -2412,6 +2454,7 @@
       if (!client) return;
 
       const label = document.getElementById('site-label').value;
+      const measuredBy = document.getElementById('site-measured-by').value;
       const length = document.getElementById('site-length').value;
       const lengthUnit = document.getElementById('site-length-unit').value;
       const width = document.getElementById('site-width').value;
@@ -2429,6 +2472,7 @@
             return {
               ...site,
               label,
+              measuredBy,
               dimensions: { length, lengthUnit, width, widthUnit, height, heightUnit, depth, depthUnit },
               notes,
               images: appState.tempSiteImages || []
@@ -2441,6 +2485,7 @@
         const newSite = {
           id: 'site-' + Date.now(),
           label,
+          measuredBy,
           dimensions: { length, lengthUnit, width, widthUnit, height, heightUnit, depth, depthUnit },
           notes,
           images: appState.tempSiteImages || []
@@ -2618,7 +2663,7 @@
 
       if (!appState.isOffline && db) {
         try {
-          const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'clients', client.id);
+          const docRef = doc(db, 'artifacts', appId, 'users', getActiveUserId(), 'clients', client.id);
           await updateDoc(docRef, { status, updatedAt: Date.now() });
           triggerToast(`Fabrication level set: ${status}`);
         } catch (err) {
@@ -2652,9 +2697,11 @@
             updatedAt: Date.now()
           };
 
+          const ownerId = appState.portalOwnerId || getActiveUserId();
+
           if (!appState.isOffline && db) {
             try {
-              const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'clients', client.id);
+              const docRef = doc(db, 'artifacts', appId, 'users', ownerId, 'clients', client.id);
               await updateDoc(docRef, {
                 status: 'Approved',
                 feedback: payload.feedback,
@@ -2678,11 +2725,17 @@
     const parseUrlDeepLink = () => {
       const urlParams = new URLSearchParams(window.location.search);
       const targetClientId = urlParams.get('client');
+      const ownerId = urlParams.get('owner');
+
       if (targetClientId) {
-        const client = appState.clients.find(c => c.id === targetClientId);
-        if (client) {
-          appState.activeClient = client;
-          switchView('client-portal');
+        if (ownerId && !appState.isOffline) {
+          setupClientPortalSubscription(ownerId, targetClientId);
+        } else {
+          const client = appState.clients.find(c => c.id === targetClientId);
+          if (client) {
+            appState.activeClient = client;
+            switchView('client-portal');
+          }
         }
       }
     };
@@ -2721,7 +2774,7 @@
       const actionContainer = document.getElementById('client-portal-signoff-action-container');
       if (client.status !== 'Approved') {
         actionContainer.innerHTML = `
-          <button onclick="approveClientPortalSpecs()" class="bg-amber-500 hover:bg-amber-600 text-slate-950 font-black px-5 py-3 rounded-xl shadow-md shadow-amber-500/10 transition active:scale-95 flex items-center gap-1.5 text-xs uppercase tracking-wider">
+          <button onclick="approveClientPortalSpecs()" class="bg-amber-500 hover:bg-amber-600 text-slate-955 font-black px-5 py-3 rounded-xl shadow-md shadow-amber-500/10 transition active:scale-95 flex items-center gap-1.5 text-xs uppercase tracking-wider">
             <i data-lucide="check-circle" class="w-4 h-4 stroke-[2.5]"></i> Signoff & Lock Specs
           </button>
         `;
@@ -2741,11 +2794,11 @@
       
       document.getElementById('portal-tab-workpieces').className = tab === 'workpieces' 
         ? "pb-3 text-xs font-black uppercase tracking-widest flex items-center gap-2 border-b-2 border-amber-500 text-amber-600 transition"
-        : "pb-3 text-xs font-black uppercase tracking-widest flex items-center gap-2 border-b-2 border-transparent text-slate-500 hover:text-slate-800 transition";
+        : "pb-3 text-xs font-black uppercase tracking-widest flex items-center gap-2 border-b-2 border-transparent text-slate-500 hover:text-slate-805 transition";
 
       document.getElementById('portal-tab-site').className = tab === 'site-measures' 
         ? "pb-3 text-xs font-black uppercase tracking-widest flex items-center gap-2 border-b-2 border-amber-500 text-amber-605 transition"
-        : "pb-3 text-xs font-black uppercase tracking-widest flex items-center gap-2 border-b-2 border-transparent text-slate-500 hover:text-slate-800 transition";
+        : "pb-3 text-xs font-black uppercase tracking-widest flex items-center gap-2 border-b-2 border-transparent text-slate-500 hover:text-slate-805 transition";
 
       renderPortalTabContent();
     };
@@ -2826,6 +2879,11 @@
                     </div>
                     ` : ''}
 
+                    <div class="flex justify-between items-center text-[10px] text-slate-500 font-mono bg-slate-50 p-2 rounded-lg border border-slate-100">
+                      <span>Measured By:</span>
+                      <span class="font-bold text-amber-850">${item.measuredBy || 'Lead Designer'}</span>
+                    </div>
+
                     <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100 mt-auto font-mono">
                       <span class="text-[10px] uppercase font-bold text-slate-400 tracking-wider block mb-2">Registered Dimensions</span>
                       <div class="grid grid-cols-4 gap-2 text-center">
@@ -2884,8 +2942,8 @@
                     ${site.images && site.images.length > 0 ? `
                       <img src="${site.images[0]}" alt="${site.label}" onclick="openImageViewer('${site.images[0]}', '${site.label}')" class="w-full h-full object-cover cursor-zoom-in" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=400&q=80'" />
                       <div onclick="openImageViewer('${site.images[0]}', '${site.label}')" class="absolute inset-0 bg-slate-900/10 opacity-0 group-hover:opacity-100 transition flex items-center justify-center cursor-zoom-in">
-                        <span class="bg-white border border-slate-200 p-2 rounded-xl text-slate-700 text-[10px] font-mono flex items-center gap-1.5 shadow-md">
-                          <i data-lucide="zoom-in" class="w-3.5 h-3.5 text-amber-600"></i> Click to Zoom Clearance Image
+                        <span class="bg-white border border-slate-200 p-2 rounded-xl text-slate-200 text-[10px] font-mono flex items-center gap-1.5 shadow-md">
+                          <i data-lucide="zoom-in" class="w-3.5 h-3.5 text-amber-500"></i> Click to Zoom Clearance Image
                         </span>
                       </div>
                     ` : `
@@ -2897,12 +2955,18 @@
                   </div>
                   <div class="p-5 flex-1 flex flex-col gap-4">
                     <div>
-                      <div class="flex items-center gap-2 text-slate-800 mb-1">
+                      <div class="flex items-center gap-2 text-slate-805 mb-1">
                         <i data-lucide="map-pin" class="w-4 h-4 text-amber-600"></i>
                         <h3 class="text-sm font-black">${site.label}</h3>
                       </div>
                       ${site.notes ? `<p class="text-xs text-slate-500 mt-2.5 italic leading-relaxed">"${site.notes}"</p>` : ''}
                     </div>
+
+                    <div class="flex justify-between items-center text-[10px] text-slate-500 font-mono bg-slate-50 p-2 rounded-lg border border-slate-100">
+                      <span>Measured By:</span>
+                      <span class="font-bold text-amber-805">${site.measuredBy || 'Lead Designer'}</span>
+                    </div>
+
                     <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100 mt-auto font-mono">
                       <span class="text-[10px] uppercase font-bold text-slate-450 tracking-wider block mb-2">Location Clearances Registered</span>
                       <div class="grid grid-cols-4 gap-2 text-center">
@@ -2972,9 +3036,11 @@
         updatedAt: Date.now()
       };
 
+      const ownerId = appState.portalOwnerId || getActiveUserId();
+
       if (!appState.isOffline && db) {
         try {
-          const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'clients', client.id);
+          const docRef = doc(db, 'artifacts', appId, 'users', ownerId, 'clients', client.id);
           await updateDoc(docRef, {
             feedback: updatedFeedback,
             updatedAt: Date.now()
@@ -3013,6 +3079,7 @@
               <div class="border border-zinc-300 p-4 rounded-xl space-y-3 bg-zinc-50">
                 <div class="flex justify-between items-center border-b border-zinc-200 pb-1.5">
                   <h4 class="font-black text-sm text-zinc-900">${idx + 1}. ${item.title} (${item.woodType || 'Walnut'})</h4>
+                  <span class="text-xs text-zinc-500 font-mono">Measured by: ${item.measuredBy || 'Lead Designer'}</span>
                 </div>
                 <div class="grid grid-cols-4 gap-2 text-center font-mono text-xs text-zinc-900">
                   <div class="border border-zinc-300 p-2 rounded bg-white">
@@ -3035,7 +3102,7 @@
                 ${item.notes ? `
                   <div class="text-xs pt-1">
                     <strong class="uppercase font-bold text-[9px] text-zinc-600 block mb-1 font-mono">Execution / Cutting Notes:</strong>
-                    <p class="text-zinc-805 italic leading-relaxed">"${item.notes}"</p>
+                    <p class="text-zinc-855 italic leading-relaxed">"${item.notes}"</p>
                   </div>
                 ` : ''}
               </div>
@@ -3054,6 +3121,7 @@
               <div class="border border-zinc-300 p-4 rounded-xl space-y-3 bg-zinc-50">
                 <div class="flex justify-between items-center border-b border-zinc-200 pb-1.5">
                   <h4 class="font-black text-sm text-zinc-900">${idx + 1}. Location Target: ${site.label}</h4>
+                  <span class="text-xs text-zinc-500 font-mono">Verified by: ${site.measuredBy || 'Lead Designer'}</span>
                 </div>
                 <div class="grid grid-cols-4 gap-2 text-center font-mono text-xs text-zinc-900">
                   <div class="border border-zinc-300 p-2 rounded bg-white">
@@ -3123,7 +3191,6 @@
         </div>
       `;
 
-      // Copy constructed sheet to the interactive screen element & the invisible print wrapper
       previewContainer.innerHTML = sheetContent;
       physicalContainer.innerHTML = sheetContent;
       
